@@ -102,13 +102,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // ===== NAVBAR SCROLL EFFECT =====
+    // ===== NAVBAR SCROLL: light blue → white =====
+    const navbar = document.getElementById('mainNavbar');
     window.addEventListener('scroll', function () {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+        if (window.scrollY > 80) {
+            navbar.classList.add('scrolled');
         } else {
-            navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+            navbar.classList.remove('scrolled');
         }
     });
 });

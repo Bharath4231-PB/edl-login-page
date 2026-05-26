@@ -50,19 +50,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'exposys_project.wsgi.application'
 
+# SQLite (active now — works without MySQL setup)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'exposys_registration_db',
-        'USER': 'root',           # Change to your MySQL username
-        'PASSWORD': 'root',       # Change to your MySQL password
-        'HOST': 'localhost',
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# MySQL config (uncomment below and comment above when MySQL is ready)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'exposys_registration_db',
+#         'USER': 'root',
+#         'PASSWORD': 'YOUR_MYSQL_PASSWORD',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
+#     }
+# }
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Kolkata'

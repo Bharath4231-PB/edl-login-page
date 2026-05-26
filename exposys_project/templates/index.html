@@ -13,7 +13,7 @@
 <body>
 
 <!-- ===== NAVBAR ===== -->
-<nav class="navbar navbar-expand-lg sticky-top">
+<nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
     <div class="container">
         <a class="navbar-brand" href="#">
             <div class="brand-logo">E</div>
@@ -36,7 +36,7 @@
     </div>
 </nav>
 
-<!-- ===== HERO SECTION ===== -->
+<!-- ===== HERO SECTION (Light Blue) ===== -->
 <section class="hero-section" id="home">
     <div class="container">
         <div class="row align-items-center g-4">
@@ -77,9 +77,9 @@
                     <h4>Industry-Ready Training</h4>
                     <p>Real projects, expert mentors, and a certificate that matters</p>
                     <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
-                        <span class="badge bg-warning text-dark px-3 py-2"><i class="bi bi-award me-1"></i>Certified</span>
+                        <span class="badge px-3 py-2" style="background:#1565c0;color:white"><i class="bi bi-award me-1"></i>Certified</span>
                         <span class="badge bg-success px-3 py-2"><i class="bi bi-briefcase me-1"></i>Job Ready</span>
-                        <span class="badge bg-info px-3 py-2"><i class="bi bi-people me-1"></i>Mentored</span>
+                        <span class="badge px-3 py-2" style="background:#42a5f5;color:white"><i class="bi bi-people me-1"></i>Mentored</span>
                     </div>
                 </div>
             </div>
@@ -87,17 +87,18 @@
     </div>
 </section>
 
-<!-- ===== BENEFITS SECTION ===== -->
+<!-- ===== BENEFITS SECTION (White) ===== -->
 <section class="benefits-section" id="benefits">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="section-title">Why Choose <span style="color:var(--primary)">Exposys Data Labs?</span></h2>
+            <span class="section-badge"><i class="bi bi-star-fill me-1"></i>Why Choose Us</span>
+            <h2 class="section-title">Exposys Data <span>Labs Benefits</span></h2>
             <p class="section-subtitle">Everything you need to build a successful tech career</p>
         </div>
         <div class="row g-4">
             <div class="col-md-4 col-sm-6">
                 <div class="benefit-card">
-                    <div class="benefit-icon" style="background:#fff0f0;color:var(--primary)"><i class="bi bi-patch-check-fill"></i></div>
+                    <div class="benefit-icon" style="background:#e3f2fd;color:#1565c0"><i class="bi bi-patch-check-fill"></i></div>
                     <h5>Industry Certificate</h5>
                     <p>Receive a recognized certificate upon successful completion of your internship program.</p>
                 </div>
@@ -118,21 +119,21 @@
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="benefit-card">
-                    <div class="benefit-icon" style="background:#fff8e1;color:#ffc107"><i class="bi bi-linkedin"></i></div>
+                    <div class="benefit-icon" style="background:#fff8e1;color:#f59e0b"><i class="bi bi-linkedin"></i></div>
                     <h5>LinkedIn Recommendation</h5>
                     <p>Get a professional LinkedIn recommendation to boost your profile and visibility.</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="benefit-card">
-                    <div class="benefit-icon" style="background:#f3e8ff;color:#6f42c1"><i class="bi bi-graph-up-arrow"></i></div>
+                    <div class="benefit-icon" style="background:#f3e8ff;color:#7c3aed"><i class="bi bi-graph-up-arrow"></i></div>
                     <h5>Career Growth</h5>
                     <p>Access placement support, resume building, and interview preparation sessions.</p>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="benefit-card">
-                    <div class="benefit-icon" style="background:#e8fdf5;color:#20c997"><i class="bi bi-clock-history"></i></div>
+                    <div class="benefit-icon" style="background:#e8fdf5;color:#059669"><i class="bi bi-clock-history"></i></div>
                     <h5>Flexible Duration</h5>
                     <p>Choose from 1 to 6 months internship duration based on your schedule and goals.</p>
                 </div>
@@ -141,11 +142,12 @@
     </div>
 </section>
 
-<!-- ===== REGISTRATION SECTION ===== -->
+<!-- ===== REGISTRATION SECTION (Very Light Blue) ===== -->
 <section class="registration-section" id="register">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="section-title">Internship <span style="color:var(--primary)">Registration</span></h2>
+            <span class="section-badge"><i class="bi bi-pencil-square me-1"></i>Apply Now</span>
+            <h2 class="section-title">Internship <span>Registration</span></h2>
             <p class="section-subtitle">Fill in your details below to apply for the internship program</p>
         </div>
         <div class="row justify-content-center">
@@ -153,14 +155,14 @@
                 <div class="form-card">
                     <div class="form-header">
                         <h3><i class="bi bi-person-plus-fill me-2"></i>Student Registration Form</h3>
-                        <p>All fields marked with <span style="color:#ffd166">*</span> are required</p>
+                        <p>All fields marked with <span style="color:#ffd166">*</span> are required &nbsp;|&nbsp; <i class="bi bi-shield-check me-1"></i>Secure & Encrypted</p>
                     </div>
                     <div class="form-body">
                         <form id="registrationForm" method="POST" novalidate>
                             {% csrf_token %}
 
                             <!-- Personal Info -->
-                            <p class="form-section-title"><i class="bi bi-person me-1"></i>Personal Information</p>
+                            <span class="form-section-title"><i class="bi bi-person me-1"></i>Personal Information</span>
                             <div class="row g-3 mb-4">
                                 <div class="col-md-6">
                                     <label class="form-label">Full Name <span class="required">*</span></label>
@@ -185,7 +187,7 @@
                             </div>
 
                             <!-- Academic Info -->
-                            <p class="form-section-title"><i class="bi bi-mortarboard me-1"></i>Academic Information</p>
+                            <span class="form-section-title"><i class="bi bi-mortarboard me-1"></i>Academic Information</span>
                             <div class="row g-3 mb-4">
                                 <div class="col-md-6">
                                     <label class="form-label">Branch / Stream <span class="required">*</span></label>
@@ -220,7 +222,7 @@
                             </div>
 
                             <!-- Internship Info -->
-                            <p class="form-section-title"><i class="bi bi-briefcase me-1"></i>Internship Details</p>
+                            <span class="form-section-title"><i class="bi bi-briefcase me-1"></i>Internship Details</span>
                             <div class="row g-3 mb-4">
                                 <div class="col-md-6">
                                     <label class="form-label">Internship Domain <span class="required">*</span></label>
@@ -235,7 +237,7 @@
                             </div>
 
                             <!-- Payment Info -->
-                            <p class="form-section-title"><i class="bi bi-credit-card me-1"></i>Payment Information</p>
+                            <span class="form-section-title"><i class="bi bi-credit-card me-1"></i>Payment Information</span>
                             <div class="row g-3 mb-4">
                                 <div class="col-12">
                                     <div class="payment-note mb-3">
