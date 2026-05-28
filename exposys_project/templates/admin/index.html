@@ -1,0 +1,87 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block content %}
+<canvas id="particles-canvas"></canvas>
+
+<!-- Welcome Banner -->
+<div style="
+    background: linear-gradient(135deg, rgba(79,142,247,0.2), rgba(124,58,237,0.2));
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+">
+    <div style="
+        width: 60px; height: 60px;
+        background: linear-gradient(135deg, #4f8ef7, #7c3aed);
+        border-radius: 16px;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 26px; font-weight: 800; color: white;
+        box-shadow: 0 8px 24px rgba(124,58,237,0.4);
+        flex-shrink: 0;
+    ">E</div>
+    <div>
+        <h2 style="color:white;font-family:'Poppins',sans-serif;font-weight:800;font-size:1.4rem;margin:0 0 4px;">
+            Welcome back, {{ user.username|capfirst }} 👋
+        </h2>
+        <p style="color:rgba(255,255,255,0.55);font-size:0.88rem;margin:0;font-family:'Poppins',sans-serif;">
+            Exposys Data Labs – Admin Management Portal &nbsp;|&nbsp;
+            <span style="color:#6ee7b7;">● System Online</span>
+        </p>
+    </div>
+    <div style="margin-left:auto;text-align:right;">
+        <p style="color:rgba(255,255,255,0.4);font-size:0.78rem;margin:0;font-family:'Poppins',sans-serif;">
+            <i class="bi bi-clock me-1"></i>
+            <span id="adminClock"></span>
+        </p>
+        <p style="color:rgba(255,255,255,0.4);font-size:0.78rem;margin:4px 0 0;font-family:'Poppins',sans-serif;">
+            <i class="bi bi-shield-check me-1" style="color:#6ee7b7;"></i>Secure Session Active
+        </p>
+    </div>
+</div>
+
+<!-- Quick Stats -->
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px;">
+    <div style="background:rgba(79,142,247,0.1);border:1px solid rgba(79,142,247,0.2);border-radius:12px;padding:20px;text-align:center;">
+        <i class="bi bi-people-fill" style="font-size:1.8rem;color:#60a5fa;display:block;margin-bottom:8px;"></i>
+        <p style="color:white;font-weight:700;font-size:1.3rem;margin:0;font-family:'Poppins',sans-serif;">Registrations</p>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.78rem;margin:4px 0 0;font-family:'Poppins',sans-serif;">View all students</p>
+    </div>
+    <div style="background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.2);border-radius:12px;padding:20px;text-align:center;">
+        <i class="bi bi-person-badge-fill" style="font-size:1.8rem;color:#a78bfa;display:block;margin-bottom:8px;"></i>
+        <p style="color:white;font-weight:700;font-size:1.3rem;margin:0;font-family:'Poppins',sans-serif;">Users</p>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.78rem;margin:4px 0 0;font-family:'Poppins',sans-serif;">Manage admin users</p>
+    </div>
+    <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.2);border-radius:12px;padding:20px;text-align:center;">
+        <i class="bi bi-database-fill" style="font-size:1.8rem;color:#34d399;display:block;margin-bottom:8px;"></i>
+        <p style="color:white;font-weight:700;font-size:1.3rem;margin:0;font-family:'Poppins',sans-serif;">Database</p>
+        <p style="color:rgba(255,255,255,0.45);font-size:0.78rem;margin:4px 0 0;font-family:'Poppins',sans-serif;">MySQL Connected</p>
+    </div>
+    <div style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.2);border-radius:12px;padding:20px;text-align:center;">
+        <i class="bi bi-globe" style="font-size:1.8rem;color:#fbbf24;display:block;margin-bottom:8px;"></i>
+        <p style="color:white;font-weight:700;font-size:1.3rem;margin:0;font-family:'Poppins',sans-serif;">Website</p>
+        <a href="/" style="color:rgba(255,255,255,0.45);font-size:0.78rem;font-family:'Poppins',sans-serif;">View live site ↗</a>
+    </div>
+</div>
+
+<!-- Default app list -->
+{% include "admin/app_index.html" ignore missing %}
+{{ block.super }}
+
+<script>
+function updateClock() {
+    const now = new Date();
+    document.getElementById('adminClock').textContent = now.toLocaleString('en-IN', {
+        weekday:'short', year:'numeric', month:'short',
+        day:'numeric', hour:'2-digit', minute:'2-digit'
+    });
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+{% endblock %}

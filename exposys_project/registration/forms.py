@@ -21,9 +21,21 @@ class RegistrationForm(forms.ModelForm):
             'payment_id': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter Payment Transaction ID'}),
         }
 
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if name:
+            import re
+            if not re.match(r'^[a-zA-Z\s]+$', name):
+                raise forms.ValidationError("Full Name can only contain letters and spaces.")
+        return name
+
     def clean_phone(self):
         phone = self.cleaned_data.get('phone')
-        if not phone.isdigit() or len(phone) != 10:
+        if not phone:
+            return phone
+        if not phone.isdigit():
+            raise forms.ValidationError("Phone number must contain only numbers.")
+        if len(phone) != 10:
             raise forms.ValidationError("Enter a valid 10-digit phone number.")
         return phone
 

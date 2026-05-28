@@ -1,0 +1,191 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposys Admin Portal – Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="{% static 'css/admin_login.css' %}" rel="stylesheet">
+    <style>
+        @keyframes waveDrift {
+            0%   { transform: translateX(0) translateY(0); }
+            50%  { transform: translateX(15px) translateY(-10px); }
+            100% { transform: translateX(0) translateY(0); }
+        }
+        .wave-path { animation: waveDrift 8s ease-in-out infinite; }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+        .spin { display: inline-block; animation: spin 1s linear infinite; }
+    </style>
+</head>
+<body>
+
+<div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
+<div class="split-wrapper">
+
+    <!-- ===== LEFT PANEL ===== -->
+    <div class="left-panel">
+
+        <!-- SVG Wave Lines Background -->
+        <svg class="waves-bg" viewBox="0 0 500 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <path class="wave-path" d="M-50,150 Q100,80 200,160 T450,140 T700,160" stroke="rgba(255,255,255,0.08)" stroke-width="2" fill="none"/>
+            <path class="wave-path" d="M-50,250 Q120,180 250,260 T500,240 T750,260" stroke="rgba(255,255,255,0.06)" stroke-width="2" fill="none" style="animation-delay:1s"/>
+            <path class="wave-path" d="M-50,350 Q80,280 200,360 T480,340 T720,360" stroke="rgba(255,255,255,0.07)" stroke-width="1.5" fill="none" style="animation-delay:2s"/>
+            <path class="wave-path" d="M-50,450 Q150,380 280,460 T530,440 T780,460" stroke="rgba(255,255,255,0.05)" stroke-width="1.5" fill="none" style="animation-delay:0.5s"/>
+            <path class="wave-path" d="M-50,550 Q100,480 230,560 T490,540 T740,560" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none" style="animation-delay:1.5s"/>
+            <!-- circles -->
+            <circle cx="80"  cy="120" r="60" stroke="rgba(255,255,255,0.05)" stroke-width="1" fill="none"/>
+            <circle cx="420" cy="580" r="90" stroke="rgba(255,255,255,0.04)" stroke-width="1" fill="none"/>
+            <circle cx="380" cy="200" r="40" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none"/>
+            <circle cx="60"  cy="500" r="50" stroke="rgba(255,255,255,0.04)" stroke-width="1" fill="none"/>
+        </svg>
+
+        <!-- Content -->
+        <div class="left-content">
+            <div class="left-logo">E</div>
+            <div class="left-brand">Exposys Data Labs</div>
+            <h1 class="left-title">Welcome to<br>Exposys Admin Panel!</h1>
+            <p class="left-subtitle">
+                Manage internship registrations, student data, and system settings from one secure place.
+            </p>
+
+            <div class="left-features">
+                <div class="feature-pill">
+                    <i class="bi bi-shield-lock-fill"></i>
+                    Secure & Encrypted Access
+                </div>
+                <div class="feature-pill">
+                    <i class="bi bi-people-fill"></i>
+                    Student Registration Management
+                </div>
+                <div class="feature-pill">
+                    <i class="bi bi-database-fill"></i>
+                    MySQL Database Connected
+                </div>
+                <div class="feature-pill">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    Real-time Data Dashboard
+                </div>
+            </div>
+        </div>
+
+        <div class="left-footer">
+            © 2024 Exposys Data Labs. All rights reserved.
+        </div>
+    </div>
+
+    <!-- ===== RIGHT PANEL ===== -->
+    <div class="right-panel">
+        <div class="login-box">
+
+            <!-- Greeting -->
+            <div class="login-greeting">
+                <p class="welcome-back">Admin Portal</p>
+                <h2>Sign In</h2>
+                <p>Enter your credentials to access the dashboard</p>
+            </div>
+
+            <!-- Secure badge -->
+            <div class="secure-badge">
+                <i class="bi bi-shield-check-fill"></i>
+                Secure Admin Access
+            </div>
+
+            <!-- Error messages -->
+            {% if form.errors %}
+            <div class="error-box">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                Invalid username or password. Please try again.
+            </div>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+            <div class="error-box">
+                <i class="bi bi-info-circle-fill"></i>
+                You are logged in as <strong>{{ user }}</strong> but not authorized here.
+            </div>
+            {% endif %}
+
+            <!-- Login Form -->
+            <form id="login-form" method="post" action="{% url 'admin:login' %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+
+                <!-- Username -->
+                <div class="field-group">
+                    <label for="id_username">
+                        Username
+                    </label>
+                    <div class="input-wrap">
+                        <i class="bi bi-person-fill field-icon"></i>
+                        <input
+                            type="text"
+                            id="id_username"
+                            name="username"
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            autofocus
+                            required
+                            value="{{ form.username.value|default:'' }}"
+                        >
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="field-group">
+                    <label for="id_password">Password</label>
+                    <div class="input-wrap">
+                        <i class="bi bi-lock-fill field-icon"></i>
+                        <input
+                            type="password"
+                            id="id_password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+                        <button type="button" class="toggle-pw" id="togglePw" title="Show/Hide password">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Options row -->
+                <div class="options-row">
+                    <div class="remember-wrap">
+                        <input type="checkbox" id="rememberMe" name="remember_me">
+                        <label for="rememberMe">Keep me signed in</label>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign In to Portal</span>
+                </button>
+            </form>
+
+            <div class="divider">or</div>
+
+            <div class="back-link">
+                <a href="/">
+                    <i class="bi bi-arrow-left"></i>
+                    Back to Exposys Website
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/admin_login.js' %}"></script>
+</body>
+</html>

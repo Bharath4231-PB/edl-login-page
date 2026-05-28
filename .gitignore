@@ -1,0 +1,10 @@
+venv/
+.venv/
+__pycache__/
+**/__pycache__/
+db.sqlite3
+.env
+node_modules/
+*.pyc
+exposys_project/server.log
+exposys_project/db.sqlite3
